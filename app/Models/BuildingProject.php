@@ -27,7 +27,19 @@ class BuildingProject extends Model
         'construction_company',
         'audit_company',
         'application_procedure',
+        'settlement',
+        'report',
         'user_id'
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'settlement' => 'array',
+        'report' => 'array',
     ];
 
     public function user(): BelongsTo

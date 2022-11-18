@@ -7,6 +7,7 @@ use App\Filament\Resources\BuildingProjectResource\RelationManagers;
 use App\Models\BuildingProject;
 use Filament\Forms;
 use Filament\Forms\Components\Card;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
@@ -16,6 +17,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\TextInputColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Livewire\TemporaryUploadedFile;
 
 class BuildingProjectResource extends Resource
 {
@@ -41,6 +43,22 @@ class BuildingProjectResource extends Resource
                     TextInput::make('construction_company'),
                     TextInput::make('audit_company'),
                     TextInput::make('application_procedure'),
+                    FileUpload::make('settlement')
+                        ->image()
+                        ->multiple()
+                        ->getUploadedFileNameForStorageUsing(
+                            fn(TemporaryUploadedFile $file): string =>
+                            (string) str($file->getClientOriginalName())
+                            ->prepend(date('Y-m-d H:i:s') . '-quyet-toan-')
+                        ),
+                    FileUpload::make('report')
+                        ->image()
+                        ->multiple()
+                        ->getUploadedFileNameForStorageUsing(
+                            fn(TemporaryUploadedFile $file): string =>
+                            (string) str($file->getClientOriginalName())
+                            ->prepend(date('Y-m-d H:i:s') . '-bao-cao-')
+                        ),
                 ])
             ]);
     }
@@ -88,6 +106,7 @@ class BuildingProjectResource extends Resource
     {
         return [
             //
+
         ];
     }
 

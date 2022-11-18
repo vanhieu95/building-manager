@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('construction_company')->nullable();
             $table->string('audit_company')->nullable();
             $table->string('application_procedure')->nullable();
+            $table->string('settlement')->nullable();
+            $table->string('report')->nullable();
             $table->foreignId('user_id')->constrained('users');
             $table->softDeletes();
             $table->timestamps();
