@@ -13,4 +13,4 @@ echo "Create the symbolic links configured for the application"
 php artisan storage:link
 
 echo "Running migrations..."
-php artisan migrate:fresh --force
+php artisan migrate:fresh --force --seed
